@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import BookViewer from './BookViewer/BookViewer';
 import TitleBar from './TitleBar/TitleBar';
+import BookCreator from './BookCreator/BookCreator';
+import Footer from './Footer/Footer';
 
 class App extends Component {
   constructor(props) {
@@ -38,6 +40,13 @@ class App extends Component {
     });
   };
 
+  createBook = newBook => {
+    this.books.push(newBook);
+    this.setState({
+      bookNumber: this.books.length - 1,
+    });
+  };
+
   render() {
     return (
       <div className='container-fluid'>
@@ -47,6 +56,8 @@ class App extends Component {
           nextBook={this.nextBook}
           previousBook={this.previousBook}
         />
+        <BookCreator addBook={this.createBook} />
+        <Footer />
       </div>
     );
   }
